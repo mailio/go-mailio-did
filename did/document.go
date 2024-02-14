@@ -2,7 +2,6 @@ package did
 
 import (
 	"crypto/ed25519"
-	"fmt"
 	"strconv"
 
 	"github.com/lestrrat-go/jwx/v2/jwk"
@@ -125,12 +124,12 @@ func NewMailioDIDDocument(mk *MailioKey, mailioPublicKey ed25519.PublicKey, Auth
 			{
 				ID:              mailioDid.String() + "#auth",
 				Type:            AuthenticationDIDType,
-				ServiceEndpoint: fmt.Sprintf("%s/%s", AuthServiceEndpoint, did.Value()),
+				ServiceEndpoint: AuthServiceEndpoint,
 			},
 			{
 				ID:              mailioDid.String() + "#didcomm",
 				Type:            MessagingDIDType,
-				ServiceEndpoint: fmt.Sprintf("%s/%s", MessageServiceEndpoint, did.Value()),
+				ServiceEndpoint: MessageServiceEndpoint,
 				Accept:          []string{"didcomm/v2", "didcomm/aip2;env=rfc587"},
 			},
 		},
