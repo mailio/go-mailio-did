@@ -35,6 +35,10 @@ func (d *DID) Value() string {
 	return d.value
 }
 
+func (d *DID) Fragment() string {
+	return d.fragment
+}
+
 func (d DID) MarshalJSON() ([]byte, error) {
 	return json.Marshal(d.raw)
 }
@@ -81,6 +85,7 @@ func ParseDID(s string) (DID, error) {
 	var frag string
 	if len(dfrag) == 2 {
 		frag = "#" + dfrag[1]
+		frag = strings.Replace(frag, "#", "", 1)
 	}
 
 	return DID{
